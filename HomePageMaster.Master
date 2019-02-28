@@ -1,0 +1,61 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="HomePageMaster.master.cs" Inherits="TopStarWebApplication01.HomePageMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+     <table>
+       <tr>
+           <td> 
+                 <div>
+            <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource1">
+                <ItemTemplate>
+                    <asp:Image ID="Image1" runat="server" Height="129px" ImageUrl='<%# Eval("logoimage") %>' Width="139px" />
+                    <br />
+<br />
+                </ItemTemplate>
+            </asp:DataList>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbtopstarConnectionString %>" SelectCommand="SELECT [logoimage] FROM [tbPanel]"></asp:SqlDataSource>
+        </div>
+           </td>
+           <td> <h1> 
+               <asp:DataList ID="DataList2" runat="server" DataSourceID="SqlDataSource2">
+                   <ItemTemplate>
+                       companyName:
+                       <asp:Label ID="companyNameLabel" runat="server" Text='<%# Eval("companyName") %>' />
+                       <br />
+<br />
+                   </ItemTemplate>
+               </asp:DataList>
+               <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:dbtopstarConnectionString %>" SelectCommand="SELECT [companyName] FROM [tbPanel]"></asp:SqlDataSource>
+               </h1></td>
+
+       </tr>
+       <tr> 
+           <td> 
+               <asp:DataList ID="DataList3" runat="server" DataSourceID="SqlDataSource3" RepeatDirection="Horizontal">
+                   <ItemTemplate>
+                       navName:
+                       <asp:Label ID="navNameLabel" runat="server" Text='<%# Eval("navName") %>' />
+                       <br />
+<br />
+                   </ItemTemplate>
+               </asp:DataList>
+               <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:dbtopstarConnectionString %>" SelectCommand="SELECT [navName] FROM [tbnavigation]"></asp:SqlDataSource>
+           </td>
+       </tr>
+   </table>
+  
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
